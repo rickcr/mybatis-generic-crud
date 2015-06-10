@@ -3,7 +3,7 @@ MyBatis module illustrating using a GenericCrudMapper and GenericCrudService
 
 Many times your application consists of doing common CRUD type operations (Create, Read, Upadte, Delete.)
 
-This is just one 'partially gneric' way to handle these common things. I say 'partially' since I've seen other approaches, such as having 
+This is just one 'partially generic' way to handle these common things. I say 'partially' since I've seen other approaches, such as having 
 a single mapper and you pass in the table name and a list of columns etc. That approach is decent as well, but I've found that many times
 you start out generic but you'll often have to tweak a few things such that your Read or delete becomes a bit more complicated. Following 
 the approach below you have the flexibility to override whatever you want. 
