@@ -1,23 +1,15 @@
 # mybatis-generic-crud
 MyBatis module illustrating using a GenericCrudMapper and GenericCrudService
 
-Many times your application consists of doing common CRUD type operations (Create, Read, Upadte, Delete.)
+Many times your application consists of doing common CRUD type operations (Create, Read, Update, Delete.)
 
-This is just one 'partially generic' way to handle these common things. I say 'partially' since I've seen other approaches, such as having 
-a single mapper and you pass in the table name and a list of columns etc. That approach is decent as well, but I've found that many times
-you start out generic but you'll often have to tweak a few things such that your Read or delete becomes a bit more complicated. Following 
-the approach below you have the flexibility to override whatever you want. 
+I'm a big fan of MyBatis and a few solutions have been proposed to handle some of the basic CRUD in a generic fashion. This is just one 'partially generic' way to handle these common things. I say 'partially' since I've seen other approaches, such as having a single mapper and you pass in the table name and a list of columns etc. That approach is decent as well, but I've found that many times you start out generic but you'll often have to tweak a few things such that your CRUD becomes a bit more complicated. Following the approach below you have the flexibility to override whatever you want.
 
-The drawback (minor) is that, yes, you still need to create a place-holder mapper interface and you still need to create your mapper xml file and the 
-corresponding CRUD sql in it. 
+The drawback (minor) is that, yes, you still need to create a place-holder mapper interface and you still need to create your mapper xml file and the corresponding CRUD sql in it.
 
-The benefit is that if you follow the convention of naming the mapper methods to match the GenericCrudMapper, you typically only are writing the SQL, 
-and the Java side becomes simple.
+The benefit is that if you follow the convention of naming the mapper methods to match the GenericCrudMapper, you typically are only writing the SQL, and the Java side becomes simple.
 
-Note, I also created a GenericCrudService class. If you follow any of my other tutorials you'll realize that I do prefer to have my Mappers used within a 
-service class. This is just my preference and not required. (I've found in the 'real world' that I often need to do more stuff around my basic crud operations
-so that using the Mapper within a Service class gives me an extra layer to shield the client - typically the UI - from having to handle the other
-business logic.
+Note, I also created a GenericCrudService class. If you follow any of my other tutorials you'll realize that I do prefer to have my Mappers used within a service class. This is just my preference and not required.  I've found in the 'real world' that I often need to do more stuff around my basic CRUD operations so that using the Mapper within a Service class gives me an extra layer to shield the client - typically the UI - from having to handle the other needed business logic around the CRUD operations.
 
 To test this application, you should just be able to run "mvn clean install" or you can typically right click on the tests in your IDE and run them there.
 
