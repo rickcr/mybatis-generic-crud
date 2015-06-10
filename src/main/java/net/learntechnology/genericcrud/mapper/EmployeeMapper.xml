@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper
+		PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+		"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="net.learntechnology.genericcrud.mapper.EmployeeMapper">
+
+	<resultMap id="employeeResult" type="Employee">
+		 <result property="id" column="id"/>
+		 <result property="firstName" column="firstname"/>
+		 <result property="lastName" column="lastname"/>
+		 <result property="age" column="age"/>
+	 </resultMap>
+
+	<select id="fetch" resultMap="employeeResult" parameterType="EmployeeSearchCriteria">
+		SELECT
+			emp.id,
+			emp.firstname,
+			emp.lastname,
+			emp.age
+		FROM employee emp
+		<if test="searchCriteria != null">
+			where
+			<if test="searchCriteria.firstName != null">
+				firstname = #{searchCriteria.firstName}
+			</if>
+		</if>
+		ORDER BY firstname, lastname
+	</select>
+
+	<select id="fetchById" resultMap="employeeResult">
+		SELECT
+			emp.id,
+			emp.firstname,
+			emp.lastname,
+			emp.age
+		FROM employee emp
+		WHERE emp.id = #{value}
+	</select>
+
+	<update id="update" parameterType="Employee">
+        UPDATE employee
+        SET
+            firstname = #{firstName},
+            lastname = #{lastName},
+            age = #{age}
+        WHERE id = #{id}
+    </update>
+
+    <insert id="insert" parameterType="Employee" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO employee ( firstname, lastname, age )
+        VALUES ( #{firstName}, #{lastName}, #{age} )
+    </insert>
+
+	<!-- for oracle you're insert with a sequence your insert mapping would look like:
+	<insert id="insertEmployee" parameterType="Employee">
+		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+			select EMPLOYEE_SEQ.nextval from dual
+		</selectKey>
+		INSERT INTO employee ( id, firstname, lastname, age  )
+	 	VALUES ( #{id}, #{firstName}, #{lastName}, #{age} )
+	</insert>
+    -->
+
+    <delete id="delete" parameterType="Employee">
+        DELETE FROM employee WHERE id = #{id}
+    </delete>
+
+
+</mapper>

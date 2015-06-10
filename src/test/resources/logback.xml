@@ -1,0 +1,18 @@
+<!DOCTYPE configuration>
+<configuration>
+	<appender name="TESTLOG" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="net.learntechnology" level="DEBUG"  additivity="false">
+		<appender-ref ref="TESTLOG"/>
+	</logger>
+	<logger name="net.learntechnology.genericcrud.services.mapper" level="TRACE" additivity="false">
+		<appender-ref ref="TESTLOG"/>
+	</logger>
+	<root level="ERROR">
+		<appender-ref ref="TESTLOG"/>
+	</root>
+</configuration>
